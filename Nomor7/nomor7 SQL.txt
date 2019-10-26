@@ -1,0 +1,87 @@
+<!-- Query Data Tampil Buku-->>
+
+/* MariaDB [perpustakaan]> SELECT * FROM books;
++----+-------------------------------------+------+-------+-----------------------------+-------------+
+| id | name                                | stok | image | deskripsi        | category_id |
++----+-------------------------------------+------+-------+-----------------------------+-------------+
+|  1 | Sherlock Holmes                     |    5 |       | Buku fiksi bertema Mystery  |           1 |
+|  2 | Harry Potter and the Goblet of Fire |    7 |       | Buku fiksi bertema Fantasy  |           3 |
+|  3 | Scream                              |    3 |       | Buku fiksi bertema Thriller |           4 |
+|  4 | Into the Water                      |    2 |       | Buku fiksi bertema Thriller |           4 |
+|  5 | The Red Hunter                      |    8 |       | Buku fiksi bertema Thriller |           4 |
+|  6 | It                                  |    1 |       | Buku fiksi bertema Horror   |           2 |
+|  7 | The Terror                          |   12 |       | Buku fiksi bertema Horror   |           2 |
++----+-------------------------------------+------+-------+-----------------------------+-------------+
+7 rows in set (0.00 sec)
+
+<!-- Query Tampil Data Nama Kategori, Nama Buku dan Stok Buku berdasarkan Kategori-->>
+
+MariaDB [perpustakaan]> SELECT categories.name, books.name, books.stok FROM categories JOIN books ON categories.id = books.category_id;
++----------+-------------------------------------+------+
+| name     | name                                | stok |
++----------+-------------------------------------+------+
+| Mystery  | Sherlock Holmes                     |    5 |
+| Fantasy  | Harry Potter and the Goblet of Fire |    7 |
+| Thriller | Scream                              |    3 |
+| Thriller | Into the Water                      |    2 |
+| Thriller | The Red Hunter                      |    8 |
+| Horror   | It                                  |    1 |
+| Horror   | The Terror                          |   12 |
++----------+-------------------------------------+------+
+7 rows in set (0.02 sec)
+
+<!-- Query Tampil Data Buku berdasarkan Kategori-->>
+
+MariaDB [perpustakaan]> SELECT * FROM books WHERE category_id='3';
++----+-------------------------------------+------+-------+----------------------------+-------------+
+| id | name                                | stok | image | deskripsi       | category_id |
++----+-------------------------------------+------+-------+----------------------------+-------------+
+|  2 | Harry Potter and the Goblet of Fire |    7 |       | Buku fiksi bertema Fantasy |           3 |
++----+-------------------------------------+------+-------+----------------------------+-------------+
+1 row in set (0.02 sec)
+
+
+<!-- Query Tambah Kategori-->>
+
+MariaDB [perpustakaan]> INSERT INTO categories (name) VALUES ('Fiction');
+Query OK, 1 row affected (0.03 sec)
+
+
+<!-- Query Tampil Data Kategori-->>
+
+MariaDB [perpustakaan]> SELECT * FROM categories;
++----+----------+
+| id | name     |
++----+----------+
+|  1 | Mystery  |
+|  2 | Horror   |
+|  3 | Fantasy  |
+|  4 | Thriller |
+|  5 | Romance  |
+|  6 | Fiction  |
++----+----------+
+6 rows in set (0.00 sec)
+
+<!-- Query Tampil Buku-->>
+
+MariaDB [perpustakaan]> INSERT INTO books (name, stok, deskripsi, image, category_id) VALUES ('Eat, Pray, Love', 10, 'Buku fiksi bertema Romance', '', 5);
+Query OK, 1 row affected (0.02 sec)
+
+<!-- Query Tampil Data Buku-->>
+
+MariaDB [perpustakaan]> SELECT * FROM books;
++----+-------------------------------------+------+-------+-----------------------------+-------------+
+| id | name                                | stok | image | deskripsi        | category_id |
++----+-------------------------------------+------+-------+-----------------------------+-------------+
+|  1 | Sherlock Holmes                     |    5 |       | Buku fiksi bertema Mystery  |           1 |
+|  2 | Harry Potter and the Goblet of Fire |    7 |       | Buku fiksi bertema Fantasy  |           3 |
+|  3 | Scream                              |    3 |       | Buku fiksi bertema Thriller |           4 |
+|  4 | Into the Water                      |    2 |       | Buku fiksi bertema Thriller |           4 |
+|  5 | The Red Hunter                      |    8 |       | Buku fiksi bertema Thriller |           4 |
+|  6 | It                                  |    1 |       | Buku fiksi bertema Horror   |           2 |
+|  7 | The Terror                          |   12 |       | Buku fiksi bertema Horror   |           2 |
+|  8 | Fifty Shades of Grey                |   17 |       | Buku fiksi bertema Romance  |           5 |
+|  9 | Eat, Pray, Love                     |   10 |       | Buku fiksi bertema Romance  |           5 |
++----+-------------------------------------+------+-------+-----------------------------+-------------+
+9 rows in set (0.00 sec)
+
